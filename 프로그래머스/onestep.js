@@ -121,3 +121,47 @@ function solution(left, right) {
     
     return sum;
 }
+
+//문제6. 같은 숫자는 싫어
+
+//문제7. 콜라츠 추측
+// 1-1. 입력된 수가 짝수라면 2로 나눕니다. 
+// 1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더합니다.
+// 2. 결과로 나온 수에 같은 작업을 1이 될 때까지 반복합니다.
+// 단, 작업을 500번을 반복해도 1이 되지 않는다면 –1을 반환해 주세요.
+function solution(num) {
+    var answer = 0;
+    let count=0;
+    let number = num;
+    while(count<501 && number!=1){
+        if(number % 2 ===0){
+            number = Math.floor(number/2);
+        } else {
+            number = number*3+1;
+        }
+        count++;
+    }
+    if(count>500) return -1;
+    answer = count;
+    return answer;
+}
+
+//다른 풀이 - 재귀함수 이용. 속도 느림. 참고만 하자.
+//return num == 1 ? (count >= 500 ? -1 : count) : collatz(num % 2 == 0 ? num / 2 : num * 3 + 1,++count);
+
+
+//문제8. 최댓값과 최솟값
+//주어지는 공백으로 구분된 숫자들의 문자열 s
+//내 풀이: 정렬 후 맨 앞, 맨 뒷값
+function solution(s) {
+    var answer = '';
+    let arr=s.split(" ");
+    arr.sort((a,b)=>a-b);
+    
+    answer = String(arr[0])+" "+String(arr[arr.length-1]);
+    return answer;
+}
+
+//다른 풀이: 정렬 없이 바로 max,min. js는 문자열도 Math.max 가능
+// const arr = s.split(' ');
+// return Math.min(...arr)+' '+Math.max(...arr);
