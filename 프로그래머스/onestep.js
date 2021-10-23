@@ -165,3 +165,38 @@ function solution(s) {
 //다른 풀이: 정렬 없이 바로 max,min. js는 문자열도 Math.max 가능
 // const arr = s.split(' ');
 // return Math.min(...arr)+' '+Math.max(...arr);
+
+
+//문제9. 완주하지 못한 선수
+//*find써서 해보자
+function solution(participant, completion) {
+    var answer = '';
+//     var arr = [];
+    
+//     for(let i=0; i<participant.length; i++){
+//         for(let j=0; j<completion.length; j++){
+//             if(participant.includes(completion[j])){
+//                 participant.splice(i,1);
+//                 console.log(participant);
+//             }
+//         }
+//     }
+    
+//     return participant;
+    let p={};
+    for(let person of completion){
+        if(p[person]){
+            p[person]++
+        }else{
+            p[person]=1;
+        }
+    }
+    for(let person of participant){
+        if(!p[person] || p[person]===0){
+            return person;
+        } else {
+            p[person]--;
+        }
+    }
+    return answer;
+}
