@@ -200,3 +200,29 @@ function solution(participant, completion) {
     }
     return answer;
 }
+
+
+//문제10. 뒷자리 4개 빼고 핸드폰 번호 가리기
+//내풀이
+function solution(phone_number) {
+    var answer = '';
+    
+    for(let i=0; i<phone_number.length-4; i++){
+        answer+="*"
+    }
+    for(let i=phone_number.length-4; i<phone_number.length; i++){
+        answer += phone_number[i];
+    }
+    return answer;
+}
+//다른풀이 - 정규식
+// return s.replace(/\d(?=\d{4})/g, "*");
+
+//또다른풀이
+// return "*".repeat(s.length - 4) + s.slice(-4);
+
+//또또 다른 풀이
+// for(var i=0; i< s.length; i++){    
+//     answer += i < s.length -4 ? "*" : s.charAt(i);
+//   }  
+
