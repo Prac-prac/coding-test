@@ -226,3 +226,9 @@ function solution(phone_number) {
 //     answer += i < s.length -4 ? "*" : s.charAt(i);
 //   }  
 
+//문제11.
+//배열 거꾸로 뒤집기
+for(let i=0; i<arr.length; i++){
+    let tmp=0;
+    for(let j=0; j<)
+}
