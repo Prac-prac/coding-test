@@ -228,7 +228,59 @@ function solution(phone_number) {
 
 //문제11.
 //배열 거꾸로 뒤집기
-for(let i=0; i<arr.length; i++){
-    let tmp=0;
-    for(let j=0; j<)
+// for(let i=0; i<arr.length; i++){
+//     let tmp=0;
+//     for(let j=0; j<)
+// }
+
+
+
+//문제12. 체육복 도난 당한 친구 lost, 여분 있는 reverse. lost의 앞뒤로만 빌릴 수 있
+//내 안 된 풀이 - splice를 어떻게 해결할 수 있을까? -1을 넣어도 안 되네..
+function solution(n, lost, reserve) {
+    var answer = 0;
+    let on = false;
+    let count=0;
+    for(let i=0; i<lost.length; i++){
+        for(let j=0; j<reserve.length; j++){
+            if(lost[i]==reserve[j]-1 || lost[i]==reserve[j]+1) {
+                reserve.splice(j,1);
+                on=true;
+            }
+        }
+        if(on===true){
+            count++;
+            on=false;
+        } 
+    }
+    count += (n-lost.length);
+    return count;
+}
+
+//다른 풀이
+function solution(n, lost, reserve) {
+    var answer = 0;
+    var exist=0;
+
+    for(let i=0; i<lost.length; i++) {
+        for(let j=0; j<reserve.length; j++) {
+            if(lost[i]===reserve[j]) {
+                exist++;
+                lost[i] = -1;
+                reserve[j] = -1;
+                break;
+            }
+        }
+    }
+    for(let i=0; i<lost.length; i++){
+        for(let j=0; j<reserve.length; j++){
+            if(reserve[j]-1===lost[i] || reserve[j]+1===lost[i]){
+                answer++;
+                reserve[j]=-1;
+                break;
+            }
+        }
+    }
+    answer = n - lost.length + exist + answer;
+    return answer;
 }
