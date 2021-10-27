@@ -284,3 +284,34 @@ function solution(n, lost, reserve) {
     answer = n - lost.length + exist + answer;
     return answer;
 }
+
+
+//문제13. n을 나눴을 때 나머지가 1이 되게 하는 수 찾기
+//내 풀이 - 왜 무한로딩이 걸릴까..?
+function solution(n) {
+   
+    while(true){
+        let x =1;
+        console.log(n%x);
+        if(n%x===1){
+            return x;
+        }
+        x++;
+    }
+}
+
+//문자14. 문자열 내 숫자영단어 숫자로 바꾸기
+//내 풀이 ??
+function solution(s) {
+    var answer = 0;
+    let arr=["zero", "one", "two", "three", "four", "five",
+            "six", "seven", "eight", "nine", "ten"];
+    
+    for(let i=0; i<arr.lenght; i++){
+        if(s.includes(arr[i])){
+            s.replace(arr[i],i);
+            console.log("!!");
+        }
+    }
+    return s;
+}
