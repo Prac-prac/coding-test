@@ -315,3 +315,45 @@ function solution(s) {
     }
     return s;
 }
+
+
+//문제15. https://programmers.co.kr/learn/courses/30/lessons/42840 ->for문 작성이...
+function solution(answers) {
+    var answer = [];
+    
+    let student=[[1,2,3,4,5], [2,1,2,3,2,4,2,5], [3,3,1,1,2,2,4,4,5,5]];
+    let index=0;
+    for(let i=0; i<student.length; i++){
+        while(answers.length > student[i].length){
+            student[i][length] = student[i][(index+1)%student.length-1];
+            index++;
+        }
+    }
+    console.log(student);
+    
+    let count=0;
+    let correct=[0,0,0];
+    
+    for(let i=0; i<answers.length; i++){
+       for(let j=0; j<student.length; j++){
+            
+            if(answers[i]===student[j][i]){
+                count++;
+            }
+        }
+            
+        correct[i]=count;
+        count=0;
+    }
+    console.log('correct', correct);
+    let max=0;
+    for(let i=0; i<correct.length; i++){
+        if(correct[i]>max) max = correct[i];
+    }
+    for(let i=0; i<correct.length; i++){
+        if(correct[i]===max){
+            answer.push(i);
+        }
+    }
+    return answer;
+}
