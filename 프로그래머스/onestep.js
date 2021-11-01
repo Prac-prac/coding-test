@@ -357,3 +357,44 @@ function solution(answers) {
     }
     return answer;
 }
+
+
+
+//로또문제 https://programmers.co.kr/learn/courses/30/lessons/77484
+function solution(lottos, win_nums) {
+    var answer = [];
+    
+    let count=0;
+    for(let i=0; i<lottos.length; i++){
+        if(lottos[i]===0){
+            count++;
+        }
+    }
+    let correct=0;
+    for(let i=0; i<win_nums.length; i++){
+        if(lottos.includes(win_nums[i])){
+            correct++;
+        }
+    }
+    switch(correct){
+      case 6: answer[0]=1;
+      case 5: answer[0]=2;
+      case 4: answer[0]=3;
+      case 3: answer[0]=4;
+      case 2: answer[0]=5;     
+      default: answer[0]=6;
+    }
+        
+    switch(correct+count){
+      case 6: answer[1]=1;
+      case 5: answer[1]=2;
+      case 4: answer[1]=3;
+      case 3: answer[1]=4;
+      case 2: answer[1]=5;     
+      default: answer[1]=6;
+    }
+    
+    console.log(correct);
+    console.log(count);
+    return answer;
+}
