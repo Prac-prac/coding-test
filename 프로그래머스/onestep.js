@@ -398,3 +398,52 @@ function solution(lottos, win_nums) {
     console.log(count);
     return answer;
 }
+
+
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
+//내가 푼 풀이 else에서 전꺼 중 안겹치는 거 있는지 while문 돌려야 되나? 재귀함수 돌려야되나 했는데..
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var lengthOfLongestSubstring = function(s) {
+    let arr=[];
+    let history=[];
+    for(let i=0; i<s.length; i++){
+        if(!arr.includes(s[i])){
+            arr.push(s[i]);
+        } else {
+            history.push(arr.slice());
+            arr=[];
+            arr.push(s[i]);
+            while(s[i-1]!==s[i] && s[i-1]!==undefined){
+                arr.unshift(s[i-1]);
+                i--;
+            }
+        }
+    }
+    history.push(arr.slice());
+    let max=0;
+    for(let i=0; i<history.length; i++){
+        if(history[i].length>max) max=history[i].length;
+    }
+    return max;
+};
+
+
+//다른 맞는 풀이 Map을 쓰셨구나
+var lengthOfLongestSubstring = function(s) {
+    var start = 0, maxLen = 0;
+    var map = new Map();
+  
+    for(var i = 0; i < s.length; i++) {
+        var ch = s[i];
+      
+        if(map.get(ch) >= start) start = map.get(ch) + 1;
+        map.set(ch, i);
+      
+        if(i - start + 1 > maxLen) maxLen = i - start + 1;
+    }
+  
+    return maxLen;
+  };
