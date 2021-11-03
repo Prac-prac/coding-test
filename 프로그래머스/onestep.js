@@ -416,7 +416,8 @@ function solution(lottos, win_nums) {
             history.push(arr.slice());
             arr=[];
             arr.push(s[i]);
-            while(s[i-1]!==s[i] && s[i-1]!==undefined){
+ 
+            while(!arr.includes(s[i-1]) && s[i]!==undefined && s[i-1]!==undefined){
                 arr.unshift(s[i-1]);
                 i--;
             }
@@ -447,3 +448,42 @@ var lengthOfLongestSubstring = function(s) {
   
     return maxLen;
   };
+
+
+  //https://programmers.co.kr/learn/courses/30/lessons/12973 짝지어제거하기
+  //내 풀이 - 시간초과
+  function solution(s)
+{
+    var answer = -1;
+    let on=false;
+
+    let arr = s.split('');
+    do{
+        on=false;
+        for(let i=0; i<arr.length; i++){
+            if(arr[i]===arr[i+1]){
+                arr.splice(i,2);
+                // i=0; for문의 i를 컨트롤할 수 있는 방법이 없을까?
+                on=true;
+            }
+        }
+    }while(on)
+    // console.log(arr);
+    return arr.length===0?1:0;
+}
+
+//위를 아래처럼 for의 i를 건들자
+//시간초과. 왜 그럴까.
+function solution(s)
+{
+    let arr = s.split('');
+    
+        for(let i=0; i<arr.length; i++){
+            if(arr[i]===arr[i+1]){
+                arr.splice(i,2);
+                i=-1; 
+            }
+        }
+    console.log(arr);
+    return arr.length===0?1:0;
+}
