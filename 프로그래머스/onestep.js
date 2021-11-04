@@ -473,17 +473,76 @@ var lengthOfLongestSubstring = function(s) {
 }
 
 //위를 아래처럼 for의 i를 건들자
-//시간초과. 왜 그럴까.
+//시간초과. 왜 그럴까. 
 function solution(s)
 {
     let arr = s.split('');
     
         for(let i=0; i<arr.length; i++){
             if(arr[i]===arr[i+1]){
-                arr.splice(i,2);
+                arr.splice(i,2); //splice는 ->stack,queue 쓰는 것이 좋음
                 i=-1; 
             }
         }
     console.log(arr);
-    return arr.length===0?1:0;
+    // return arr.length===0?1:0; 중복됨
+    return arr.length ? 0 : 1;
+
+}
+
+
+// 이진 변환 반복하기
+// https://programmers.co.kr/learn/courses/30/lessons/70129
+// 출처: https://blog.naver.com/PostView.naver?blogId=uyon77&logNo=222553731601&redirect=Dlog&widgetTypeCall=true&topReferer=https%3A%2F%2Fsearch.naver.com%2Fsearch.naver%3Fsm%3Dtab_hty.top%26where%3Dnexearch%26query%3D%25EC%259D%25B4%25EC%25A7%2584%2B%25EB%25B3%2580%25ED%2599%2598%2B%25EB%25B0%2598%25EB%25B3%25B5%25ED%2595%2598%25EA%25B8%25B0%26oquery%3D%25EC%259D%25B4%25EC%25A7%2584%2B%25EB%25B3%2580%25ED%2599%2598%26tqi%3DhhLkxwp0JywssMUQ6ldsssssslh-110298&directAccess=false
+function solution(s) {
+    let answer = [0,0];
+    let num = s;
+    
+    while (num != '1') {
+        const new_num = num.split("").filter(v => +v != 0).join("");
+        answer[0]++; //몇번했나
+        answer[1] += num.length - new_num.length; //0 몇 개 빠졌는지 빠진 길이를 비교해서 구함
+        
+        num = (new_num.length).toString(2); 
+    }
+        /*N진수 변환 시 주의할 점
+
+        4.toString(2); (X)   // Error 발생!!
+
+        (4).toString(2); (O) // '100' 반환
+        */
+    
+    return answer;
+}
+
+
+
+//하샤드수
+//https://programmers.co.kr/learn/courses/30/lessons/12947
+//내가 푼 풀이 ->array 쓸 필요 없없음. 아래 풀이처럼 sum으로 할 수 있었음
+function solution(x) {
+    let init=x;
+    let arr=[];
+    while(x>10){
+       arr.push(x%10);
+       x = Math.floor(x / 10);
+    }
+    arr.push(x);
+    let add = arr.reduce((a,c)=>{return a+c;});
+    
+    //return !init%add; 이렇게 쓰면 안됨.  !가 연산자가 우선됨.
+    return !(init%add);
+    
+}
+
+//같은 듯 다른 풀이
+function solution(x) {
+    let num = x;
+    let sum = 0;
+    do {
+        sum += x%10;
+        x = Math.floor(x/10);
+    } while (x>0);
+
+    return !(num%sum);
 }
