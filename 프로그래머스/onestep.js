@@ -546,3 +546,33 @@ function solution(x) {
 
     return !(num%sum);
 }
+
+//두 개 뽑아서 더하기
+//https://programmers.co.kr/learn/courses/30/lessons/68644
+function solution(numbers) {
+    let arr=[];
+    
+    let numArr=numbers;
+    for(let i=0; i<numArr.length; i++){
+        for(let j=i+1; j<numArr.length; j++){
+            arr.push(numArr[i]+numArr[j]);
+        }
+    }
+    return Array.from(new Set(arr)).sort((a,b)=>a-b);
+    
+}
+//[출처] 프로그래머스_월간코드챌린지시즌1_두개뽑아서더하기, java/javascript|작성자 vail131
+function solution(numbers) {
+    var answer = [];
+    var twosum=0;
+    return answer =
+    numbers.reduce((acc,item,idx)=>{
+        for(var i=idx+1;i<numbers.length;i++){
+            twosum=item+numbers[i];
+            if(!acc.includes(twosum)) acc.push(twosum);  //set 처럼 동작하게 함
+        }
+        return acc;
+    },[]).sort((a,b)=> a-b); //그냥 sort()로만 하면 12가 2보다 먼저옴.. string인식하는 유연한 js의 귀찮은점
+}
+
+//알고리즘 러버덕 때 고차함수 2번 이어서 쓰셨음
