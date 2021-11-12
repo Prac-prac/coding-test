@@ -87,6 +87,7 @@ function solution(numbers) {
 
 //큰 수 만들기
 // https://programmers.co.kr/learn/courses/30/lessons/42883
+// 틀린 접근법. 수 중에 작은 수들을 빼는 게 아니라 앞일수록 큰수니 앞에서부터 작은수들을 빼야됨
 function solution(number, k) {
     let num=[...number];
     console.log(num);
@@ -105,4 +106,20 @@ function solution(number, k) {
          }
      }
     return num;
+}
+
+//그래도 틀린 풀이..
+function solution(number, k) {
+    let num=[...number];
+    let count = 0;
+    for(let i=0; i<num.length; i++){
+        if(num[i]<num[i+1]) {
+            num.splice(i,1);
+            count++;
+            i=-1;
+        }
+        if(count===k) break;
+    }
+    return num.join('');
+    
 }
