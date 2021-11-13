@@ -123,3 +123,25 @@ function solution(number, k) {
     return num.join('');
     
 }
+
+//탐욕법
+//체육복
+function solution(n, lost, reserve) {
+    var answer = 0;
+    let on = false;
+    let count=0;
+    for(let i=0; i<lost.length; i++){
+        for(let j=0; j<reserve.length; j++){
+            if(lost[i]==reserve[j]-1 || lost[i]==reserve[j]+1) {
+                reserve[j]=-1; //문제점: lost 중복 수여 가능
+                on=true;
+            }
+        }
+        if(on===true){
+            count++;
+            on=false;
+        } 
+    }
+    count += (n-lost.length);
+    return count;
+}
