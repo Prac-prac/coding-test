@@ -31,6 +31,41 @@ function solution(participant, completion) {
 //     return answer;
 // }
 
+//위장
+// https://programmers.co.kr/learn/courses/30/lessons/42578
+// 내 풀이. 제출하면 실패뜸. 테스트케이스는 통과인데
+function solution(clothes) {
+    let arr=[];
+    let count=0;
+    let result=[];
+    let resultCount=0;
+    for(let i=0; i<clothes.length; i++){
+        arr.push(clothes[i][1]);
+    }
+    arr.sort();
+    for(let i=0; i<arr.length; i++){
+        if(arr[i]==arr[i+1]){
+            count++;
+        } else {
+            count++;
+            result.push(count);
+            count=0;
+        }
+        
+    }
+   
+    result.forEach(ele=>{resultCount+=ele;});
+    let star=0;
+    if(result.length>=2){
+        star=1;
+        for(let i=0; i<result.length; i++){
+            star *= result[i];
+        }
+    }
+    
+    return resultCount+star;
+}
+
 //정렬
 function solution(array, commands) {
     var answer = [];
